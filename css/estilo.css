@@ -31,18 +31,18 @@ body {
     width: 100%;
 }
 
-.logo {
+.logo { /* Formatação do logos principal*/
     width: 150px;
     height: auto;
     margin-left: 16px;
 }
 
-.logo-links {
+.logo-links {  /* Formatação do logos com link */
     width: 25px;
     height: auto;
 }
 
-.menu-esquerdo {
+.menu-esquerdo { /* Formatação do menu esquerdo*/
     width: 250px;
     background: #c59e7e;
     display: block;
@@ -52,7 +52,7 @@ body {
     border-radius: 16px;
 }
 
-.menu-esquerdo ul li a {
+.menu-esquerdo ul li a { /* Formatação da lista do menu esquerdo  */
     text-decoration: none;
     color: white;
     display: block;
@@ -61,28 +61,27 @@ body {
     transition: background 0.3s ease; /*Usado para mudar a cor do texto, fazer uma transição. EASE é a função do tempo de transição para acontecer, no caso 0,3seg*/
 }
 
-.menu-esquerdo ul {
+.menu-esquerdo ul {  /* Formatação da lista desordenada */
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.menu-esquerdo ul li {
+.menu-esquerdo ul li { /* Formatação das linhas e dos itens da lista*/
     margin-bottom: 10px;
 
 }
 
-.menu-esquerdo ul li:first-child {
-    /*first-child (primeiro filho) -> primeira linha da lista - usado para dar distanciamento da margem superior do primeiro botão*/
+.menu-esquerdo ul li:first-child { /*first-child (primeiro filho) -> primeira linha da lista - usado para dar distanciamento da margem superior do primeiro botão*/
     margin-top: 8px;
 }
 
 
-.menu-esquerdo ul li:last-child {
+.menu-esquerdo ul li:last-child { /*last-child -> última linha da lista*/
     margin-bottom: 0;
 }
 
-.conteudo {
+.conteudo { /* Formatação da classe conteúdo usada no main */
     background: #eeeae6;
     flex: 1;
     text-align: center;
@@ -93,7 +92,7 @@ body {
     color: #444444
 }
 
-.menu-direito {
+.menu-direito { /* Formatação da classe menu-direito */
     display: flex;
     flex-direction: column;
     width: 300px;
@@ -101,11 +100,11 @@ body {
     text-align: center;
 }
 
-.titulo-direito {
+.titulo-direito { /* Formatação da classe titulo-direito */
     color: white;
 }
 
-.item {
+.item { /* Formatação da classe item usada nos comentários*/
     margin: 8px;
     background: #fff;
     border-radius: 10px;
@@ -115,13 +114,13 @@ body {
     text-align: left;
 }
 
-.item strong {
+.item strong { /* Formatação da classe item negrito usado no nome dos comentários */
     display: block;
     margin-bottom: 6px;
     color: #333;
 }
 
-.depoimentos {
+.depoimentos { 
     display: flex;
     flex-direction: column;
 }
@@ -232,7 +231,6 @@ body {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-
     font-size: 1em;
 }
 
