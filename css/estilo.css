@@ -86,9 +86,7 @@ body {
     flex: 1;
     text-align: center;
     font-family: 'Open Sans', sans-serif;
-    padding: 8px;
-    padding-left: 80px;
-    padding-right: 80px;
+    padding: 16px;
     color: #444444
 }
 
@@ -322,5 +320,34 @@ ffooter {
 
     .secao-rodape.direitos-autorais {
         margin-top: 10px;
+    }
+    .container {
+        flex-direction: column; 
+    }
+
+    .menu-esquerdo {
+        width: 100%;
+    }
+
+    .conteudo {
+        width: 100%;
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .menu-direito {
+        width: 100%; 
+        margin-top: 20px; 
+        flex-direction: column; 
+    }
+
+    .menu-direito .item {
+        width: 100%; 
+        margin: 8px 0; 
+    }
+
+    .titulo-direito {
+        font-size: 1.5em;
+        text-align: center;
     }
 }
