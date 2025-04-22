@@ -41,6 +41,20 @@ body {
     width: 25px;
     height: auto;
 }
+.redes-sociais a img.logo-links {
+    transition: transform 0.2s ease-in-out; /* Adiciona uma transição suave */
+}
+
+.redes-sociais a:hover img.logo-links {
+    transform: scale(1.1); /* Aumenta o tamanho em 10% ao passar o mouse */
+}
+.secao-rodape a img.logo-links {
+    transition: transform 0.2s ease-in-out; /* Adiciona uma transição suave */
+}
+
+.secao-rodape a:hover img.logo-links {
+    transform: scale(1.1); /* Aumenta o tamanho em 10% ao passar o mouse */
+}
 
 .menu-esquerdo { /* Formatação do menu esquerdo*/
     width: 250px;
@@ -87,7 +101,10 @@ body {
     text-align: center;
     font-family: 'Open Sans', sans-serif;
     padding: 16px;
-    color: #444444
+    color: #444444;
+    max-width: 1000px;  
+    margin: 0 auto;    
+    width: 100%;       
 }
 
 .menu-direito { /* Formatação da classe menu-direito */
@@ -156,10 +173,11 @@ body {
 }
 
 .tabela-preco {
-    width: 1250px;
+    width: 100%;
+    max-width: 1000px; 
     height: auto;
-    margin-top: 30px;
-    margin-bottom: 50px;
+    margin: 30px auto 50px auto;  
+    display: block; 
 }
 
 .logo-nome {
