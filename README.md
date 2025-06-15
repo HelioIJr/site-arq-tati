@@ -1,5 +1,7 @@
 NOME ALUNO: HELIO IAQUINTO JUNIOR
 
+****SITE ATUALIZADO CONTENDO AGORA ÁREA DO CLIENTE NO MENU LATERAL ESQUERDO****
+
 Exercício proposto da matéria programação para a internet, do curso de Gestão da Tecnologia da Informação da FATEC-Itu:
 
 1. Estrutura HTML 
