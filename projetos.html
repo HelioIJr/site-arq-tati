@@ -50,7 +50,8 @@
     </nav>
 
     <div class="container py-4 meuquarto">
-        <h2 class="mb-4 text-center fs-1 fw-bold bg-light p-3 rounded shadow" style="color: #5c3d32;">Meus Quartos Infantis</h2>
+        <h2 class="mb-4 text-center fs-1 fw-bold bg-light p-3 rounded shadow" style="color: #5c3d32;">Meus Quartos
+            Infantis</h2>
         <div class="card mb-4">
             <div class="card-body">
 
@@ -95,78 +96,82 @@
                         <input type="number" step="0.01" min="0.01" id="altura" class="form-control" required />
                     </div>
                     <div class="mb-3">
-                        <label for="descricao" class="form-label">Nos conte o nome do nosso mini cliente e seus maiores sonhos para o quarto!</label>
-                        <textarea id="descricao" class="form-control" rows="3" placeholder="Conte um pouco sobre o que deseja no quarto..."></textarea>
+                        <label for="descricao" class="form-label">Nos conte o nome do nosso mini cliente e seus maiores
+                            sonhos para o quarto!</label>
+                        <textarea id="descricao" class="form-control" rows="3"
+                            placeholder="Conte um pouco sobre o que deseja no quarto..."></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Salvar Quarto</button>
                     <button type="button" id="cancelar-edicao" class="btn btn-secondary d-none">Cancelar</button>
                 </form>
 
                 <!-- Tabela para exibir os quartos abaixo do formulário -->
-                <table class="table table-striped mt-4" id="tabela-quartos">
-                    <thead>
-                        <tr>
-                            <th>Tipo</th>
-                            <th>Data Nasc.</th>
-                            <th>Tema</th>
-                            <th>Dimensões (m)</th>
-                            <th>Área (m²)</th>
-                            <th>Altura (m)</th>
-                            <th>Descrição</th>
-                            <th>Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody id="corpo-tabela-quartos">
-                        <!-- Linhas geradas pelo JS -->
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table class="table table-striped mt-4" id="tabela-quartos">
+                        <thead>
+                            <tr>
+                                <th>Tipo</th>
+                                <th>Data Nasc.</th>
+                                <th>Tema</th>
+                                <th>Dimensões (m)</th>
+                                <th>Área (m²)</th>
+                                <th>Altura (m)</th>
+                                <th>Descrição</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="corpo-tabela-quartos">
+                            <!-- Linhas geradas pelo JS -->
+                        </tbody>
+                    </table>
+                </div>
 
             </div>
         </div>
     </div>
 
-<script type="module">
-import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+    <script type="module">
+        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
 
-const urlSupabase = 'https://zsvvtlcpjkjbscpexviq.supabase.co';
-const anon = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpzdnZ0bGNwamtqYnNjcGV4dmlxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcxNzUyMTcsImV4cCI6MjA2Mjc1MTIxN30.tc_FFRfKjCMm08HHnV7CuQETgWw6W3KmJ9lkjEvOHbM';
-const supabase = createClient(urlSupabase, anon);
+        const urlSupabase = 'https://zsvvtlcpjkjbscpexviq.supabase.co';
+        const anon = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpzdnZ0bGNwamtqYnNjcGV4dmlxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcxNzUyMTcsImV4cCI6MjA2Mjc1MTIxN30.tc_FFRfKjCMm08HHnV7CuQETgWw6W3KmJ9lkjEvOHbM';
+        const supabase = createClient(urlSupabase, anon);
 
-let user_id = null;
+        let user_id = null;
 
-// Obtem sessão atual do usuário
-const { data: { session }, error } = await supabase.auth.getSession();
+        // Obtem sessão atual do usuário
+        const { data: { session }, error } = await supabase.auth.getSession();
 
-if (!session || !session.user) {
-    window.location.href = 'login.html';
-} else {
-    user_id = session.user.id;
-}
+        if (!session || !session.user) {
+            window.location.href = 'login.html';
+        } else {
+            user_id = session.user.id;
+        }
 
-const corpoTabela = document.getElementById('corpo-tabela-quartos');
-const form = document.getElementById('form-quarto');
-const idEdicao = document.getElementById('id-edicao');
+        const corpoTabela = document.getElementById('corpo-tabela-quartos');
+        const form = document.getElementById('form-quarto');
+        const idEdicao = document.getElementById('id-edicao');
 
-async function carregarQuartos() {
-    const { data, error } = await supabase
-        .from('quartos_infantis')
-        .select('*')
-        .eq('user_id', user_id)
-        .order('created_at', { ascending: false });
+        async function carregarQuartos() {
+            const { data, error } = await supabase
+                .from('quartos_infantis')
+                .select('*')
+                .eq('user_id', user_id)
+                .order('created_at', { ascending: false });
 
-    corpoTabela.innerHTML = '';
+            corpoTabela.innerHTML = '';
 
-    if (error) {
-        console.error('Erro ao carregar quartos:', error);
-        return;
-    }
+            if (error) {
+                console.error('Erro ao carregar quartos:', error);
+                return;
+            }
 
-    if (data && data.length > 0) {
-        data.forEach(q => {
-            const m2 = (q.comprimento * q.largura).toFixed(2);
-            const linha = document.createElement('tr');
+            if (data && data.length > 0) {
+                data.forEach(q => {
+                    const m2 = (q.comprimento * q.largura).toFixed(2);
+                    const linha = document.createElement('tr');
 
-            linha.innerHTML = `
+                    linha.innerHTML = `
                 <td>${q.tipo.toUpperCase()}</td>
                 <td>${formatarDataBr(q.data_nascimento)}</td>
                 <td>${q.categoria}</td>
@@ -180,124 +185,124 @@ async function carregarQuartos() {
                 </td>
             `;
 
-            corpoTabela.appendChild(linha);
-        });
+                    corpoTabela.appendChild(linha);
+                });
 
-        document.querySelectorAll('.editar').forEach(btn => {
-            btn.addEventListener('click', () => editarQuarto(btn.dataset.id));
-        });
+                document.querySelectorAll('.editar').forEach(btn => {
+                    btn.addEventListener('click', () => editarQuarto(btn.dataset.id));
+                });
 
-        document.querySelectorAll('.excluir').forEach(btn => {
-            btn.addEventListener('click', () => excluirQuarto(btn.dataset.id));
-        });
-    } else {
-        corpoTabela.innerHTML = `
+                document.querySelectorAll('.excluir').forEach(btn => {
+                    btn.addEventListener('click', () => excluirQuarto(btn.dataset.id));
+                });
+            } else {
+                corpoTabela.innerHTML = `
             <tr>
                 <td colspan="8" class="text-center">Nenhum quarto cadastrado.</td>
             </tr>
         `;
-    }
-}
-
-form.addEventListener('submit', async e => {
-    e.preventDefault();
-
-    const novo = {
-        user_id,
-        tipo: form.tipo.value.trim(),
-        data_nascimento: form.data_nascimento.value,
-        categoria: form.categoria.value.trim(),
-        comprimento: parseFloat(form.comprimento.value),
-        largura: parseFloat(form.largura.value),
-        altura: parseFloat(form.altura.value),
-        descricao: form.descricao.value.trim() === '' ? null : form.descricao.value.trim(),
-    };
-
-    console.log('Salvando quarto:', novo);
-
-    try {
-        let resposta;
-
-        if (idEdicao.value) {
-            resposta = await supabase
-                .from('quartos_infantis')
-                .update(novo)
-                .eq('id', idEdicao.value);
-        } else {
-            resposta = await supabase
-                .from('quartos_infantis')
-                .insert(novo);
+            }
         }
 
-        if (resposta.error) {
-            console.error('Erro do Supabase:', resposta.error);
-            alert('Erro ao salvar o quarto: ' + resposta.error.message);
-            return;
+        form.addEventListener('submit', async e => {
+            e.preventDefault();
+
+            const novo = {
+                user_id,
+                tipo: form.tipo.value.trim(),
+                data_nascimento: form.data_nascimento.value,
+                categoria: form.categoria.value.trim(),
+                comprimento: parseFloat(form.comprimento.value),
+                largura: parseFloat(form.largura.value),
+                altura: parseFloat(form.altura.value),
+                descricao: form.descricao.value.trim() === '' ? null : form.descricao.value.trim(),
+            };
+
+            console.log('Salvando quarto:', novo);
+
+            try {
+                let resposta;
+
+                if (idEdicao.value) {
+                    resposta = await supabase
+                        .from('quartos_infantis')
+                        .update(novo)
+                        .eq('id', idEdicao.value);
+                } else {
+                    resposta = await supabase
+                        .from('quartos_infantis')
+                        .insert(novo);
+                }
+
+                if (resposta.error) {
+                    console.error('Erro do Supabase:', resposta.error);
+                    alert('Erro ao salvar o quarto: ' + resposta.error.message);
+                    return;
+                }
+
+                limparFormulario();
+                carregarQuartos();
+            } catch (erro) {
+                console.error('Erro inesperado:', erro);
+                alert('Erro inesperado ao salvar. Verifique o console.');
+            }
+        });
+
+        function limparFormulario() {
+            form.reset();
+            idEdicao.value = '';
+            document.getElementById('cancelar-edicao').classList.add('d-none');
         }
 
-        limparFormulario();
+        async function editarQuarto(id) {
+            const { data, error } = await supabase.from('quartos_infantis').select('*').eq('id', id).single();
+
+            if (error) {
+                console.error('Erro ao buscar quarto:', error);
+                return;
+            }
+
+            form.tipo.value = data.tipo;
+            form.data_nascimento.value = data.data_nascimento;
+            form.categoria.value = data.categoria;
+            form.comprimento.value = data.comprimento;
+            form.largura.value = data.largura;
+            form.altura.value = data.altura;
+            form.descricao.value = data.descricao || '';
+            idEdicao.value = data.id;
+
+            document.getElementById('cancelar-edicao').classList.remove('d-none');
+        }
+
+        async function excluirQuarto(id) {
+            if (confirm('Deseja realmente excluir este quarto?')) {
+                await supabase.from('quartos_infantis').delete().eq('id', id);
+                carregarQuartos();
+            }
+        }
+
+        document.getElementById('cancelar-edicao').addEventListener('click', () => {
+            limparFormulario();
+        });
+
         carregarQuartos();
-    } catch (erro) {
-        console.error('Erro inesperado:', erro);
-        alert('Erro inesperado ao salvar. Verifique o console.');
-    }
-});
 
-function limparFormulario() {
-    form.reset();
-    idEdicao.value = '';
-    document.getElementById('cancelar-edicao').classList.add('d-none');
-}
+        function formatarDataBr(dataISO) {
+            if (!dataISO) return '-';
+            const [ano, mes, dia] = dataISO.split('-');
+            return `${dia}/${mes}/${ano}`;
+        }
 
-async function editarQuarto(id) {
-    const { data, error } = await supabase.from('quartos_infantis').select('*').eq('id', id).single();
-
-    if (error) {
-        console.error('Erro ao buscar quarto:', error);
-        return;
-    }
-
-    form.tipo.value = data.tipo;
-    form.data_nascimento.value = data.data_nascimento;
-    form.categoria.value = data.categoria;
-    form.comprimento.value = data.comprimento;
-    form.largura.value = data.largura;
-    form.altura.value = data.altura;
-    form.descricao.value = data.descricao || '';
-    idEdicao.value = data.id;
-
-    document.getElementById('cancelar-edicao').classList.remove('d-none');
-}
-
-async function excluirQuarto(id) {
-    if (confirm('Deseja realmente excluir este quarto?')) {
-        await supabase.from('quartos_infantis').delete().eq('id', id);
-        carregarQuartos();
-    }
-}
-
-document.getElementById('cancelar-edicao').addEventListener('click', () => {
-    limparFormulario();
-});
-
-carregarQuartos();
-
-function formatarDataBr(dataISO) {
-    if (!dataISO) return '-';
-    const [ano, mes, dia] = dataISO.split('-');
-    return `${dia}/${mes}/${ano}`;
-}
-
-window.logout = async function() {
-  const { error } = await supabase.auth.signOut();
-  if (error) {
-    console.error('Erro ao sair:', error.message);
-    alert('Erro ao sair, tente novamente.');
-  } else {
-    window.location.href = 'login.html';
-  }
-}
-</script>
+        window.logout = async function () {
+            const { error } = await supabase.auth.signOut();
+            if (error) {
+                console.error('Erro ao sair:', error.message);
+                alert('Erro ao sair, tente novamente.');
+            } else {
+                window.location.href = 'login.html';
+            }
+        }
+    </script>
 </body>
 
 </html>
