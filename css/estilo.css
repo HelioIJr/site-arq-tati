@@ -2,8 +2,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
+}
 
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 header {
@@ -11,6 +17,7 @@ header {
     background-color: #abb38e;
     align-items: center;
     padding: 16px 16px;
+    justify-content: center;
 
 }
 
@@ -32,9 +39,11 @@ body {
 }
 
 .logo { /* Formatação do logos principal*/
+    margin: o auto;
     width: 150px;
     height: auto;
-    margin-left: 16px;
+    margin-left: 0px;
+    display: block;
 }
 
 .logo-links {  /* Formatação do logos com link */
@@ -58,6 +67,7 @@ body {
 
 .menu-esquerdo { /* Formatação do menu esquerdo*/
     width: 250px;
+    max-width: 100%;
     background: #c59e7e;
     display: block;
     padding: 0;
@@ -104,13 +114,17 @@ body {
     color: #444444;
     max-width: 1000px;  
     margin: 0 auto;    
-    width: 100%;       
+    width: 100%;     
+    max-width: 100%;
+    padding-left: 16px;
+    padding-right: 16px;  
 }
 
 .menu-direito { /* Formatação da classe menu-direito */
     display: flex;
     flex-direction: column;
     width: 300px;
+    max-width: 100%;
     background: #c59e7e;
     text-align: center;
 }
@@ -142,9 +156,11 @@ body {
 
 .info {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    flex: 1;
+  align-items: center;
+  justify-content: center; /* centraliza todo conteúdo horizontalmente */
+  gap: 20px; /* espaçamento entre logo e redes sociais */
+  max-width: 1200px; /* opcional, para limitar largura */
+  margin: 0 auto; /* centraliza horizontalmente o container .info */
 }
 
 .titulos {
@@ -199,6 +215,11 @@ body {
 
 .botao-laranja {
     background-color: #e1a971;
+    border-radius: 16px;
+}
+
+.botao-cinza {
+    background-color: #679c67;
     border-radius: 16px;
 }
 
@@ -275,6 +296,7 @@ footer {
     color: white;
     padding: 20px;
     text-align: center;
+    font-family: 'Playfair Display', sans-serif;
 }
 
 .conteudo-rodape {
@@ -325,6 +347,13 @@ footer {
     margin-top: 20px;
 }
 
+header img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
 @media (max-width: 768px) {
     .conteudo-rodape {
         flex-direction: column;
@@ -367,4 +396,30 @@ footer {
         font-size: 1.5em;
         text-align: center;
     }
+
+    header {
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 10px; /* menos padding no mobile */
+    gap: 10px; /* espaçamento entre os itens do header */
+  }
+
+  /* Ajuste para o container dos ícones no header (exemplo: .redes-sociais) */
+  .redes-sociais {
+    justify-content: center !important;
+    gap: 8px;
+    width: 100%;
+    max-width: 300px; /* ou o que fizer sentido */
+  }
+
+  /* Ajuste os tamanhos dos ícones para caber no mobile */
+  .redes-sociais a img.logo-links {
+    width: 24px;  /* diminui o tamanho para caber melhor */
+    height: auto;
+  }
+
+  header img {
+    max-width: 90%; /* diminui um pouco no mobile para caber melhor */
+    height: auto;
+  }
 }
